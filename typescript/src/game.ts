@@ -1,9 +1,11 @@
 export class Game {
 
+    //TODO : Put it private
     public players: Array<string> = [];
     public places: Array<number> = [];
     public purses: Array<number> = [];
-    private inPenaltyBox: Array<boolean> = [];
+    public inPenaltyBox: Array<boolean> = [];
+
     private currentPlayer: number = 0;
     private isGettingOutOfPenaltyBox: boolean = false;
 
@@ -21,16 +23,14 @@ export class Game {
           }
     }
 
-    public add(name: string): boolean {
+    public add(name: string) {
         this.players.push(name);
-        this.places[this.howManyPlayers()] = 0;
-        this.purses[this.howManyPlayers()] = 0;
-        this.inPenaltyBox[this.howManyPlayers()] = false;
+        this.places[this.numberOfPlayers()] = 0;
+        this.purses[this.numberOfPlayers()] = 0;
+        this.inPenaltyBox[this.numberOfPlayers()] = false;
 
         console.log(name + " was added");
-        console.log("They are player number " + this.players.length);
-
-        return true;
+        console.log("They are player number " + this.numberOfPlayers());
     }
 
     public wrongAnswer(): boolean {
@@ -122,7 +122,7 @@ export class Game {
         return "Rock Question " + index;
     }
 
-    private howManyPlayers(): number {
+    private numberOfPlayers(): number {
         return this.players.length;
     }
 

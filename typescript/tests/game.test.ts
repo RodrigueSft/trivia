@@ -21,20 +21,17 @@ describe('The test environment', () => {
             const firstPlayerName ="rodrigolo";
             game.add(firstPlayerName);
 
-            // TODO
-            if (game.players.length as number !== 1) {
-                throw Error("Bad value players");
-            }
-
+            expect(game.players.length).to.deep.equal(1);
             expect(game.players).to.deep.equal([firstPlayerName]);
 
-            // TODO
-            if (game.places.length as number  !== 2) {
-                throw Error("Bad value places");
-            }
-            if (game.purses.length as number  !== 2) {
-                throw Error("Bad value purses");
-            }
+            expect(game.places.length).to.deep.equal(2);
+            expect(game.places[1]).to.deep.equal(0);
+
+            expect(game.purses.length).to.deep.equal(2);
+            expect(game.purses[1]).to.deep.equal(0);
+
+            expect(game.inPenaltyBox.length).to.deep.equal(2);
+            expect(game.inPenaltyBox[1]).to.deep.equal(false);
         });
     });
 
