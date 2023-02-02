@@ -89,7 +89,7 @@ export class Game {
         console.log("They have rolled a " + roll);
 
         if (this.inPenaltyBox[this.currentPlayer]) {
-            this.isGettingOutOfPenaltyBox = roll % 2 !== 0;
+            this.isGettingOutOfPenaltyBox = (roll % 2 !== 0);
         }
 
         if (! this.isGettingOutOfPenaltyBox) {
@@ -130,24 +130,15 @@ export class Game {
     }
 
     private currentCategory(): string {
-        if (this.places[this.currentPlayer] == 0)
+        if (this.places[this.currentPlayer] in [0, 4, 8] )
             return 'Pop';
-        if (this.places[this.currentPlayer] == 4)
-            return 'Pop';
-        if (this.places[this.currentPlayer] == 8)
-            return 'Pop';
-        if (this.places[this.currentPlayer] == 1)
+
+        if (this.places[this.currentPlayer] in [1, 5, 9] )
             return 'Science';
-        if (this.places[this.currentPlayer] == 5)
-            return 'Science';
-        if (this.places[this.currentPlayer] == 9)
-            return 'Science';
-        if (this.places[this.currentPlayer] == 2)
+
+        if (this.places[this.currentPlayer] in [2, 6, 10] )
             return 'Sports';
-        if (this.places[this.currentPlayer] == 6)
-            return 'Sports';
-        if (this.places[this.currentPlayer] == 10)
-            return 'Sports';
+
         return 'Rock';
     }
 
