@@ -18,18 +18,21 @@ describe('The test environment', () => {
                 throw Error("Bad value players");
             }
 
-            game.add("rodrigolo");
-            console.log(game.players);
-            console.log(game.places);
-            console.log(game.purses);
+            const firstPlayerName ="rodrigolo";
+            game.add(firstPlayerName);
 
+            // TODO
             if (game.players.length as number !== 1) {
                 throw Error("Bad value players");
             }
-            if (game.places.length as number  !== 1) {
+
+            expect(game.players).to.deep.equal([firstPlayerName]);
+
+            // TODO
+            if (game.places.length as number  !== 2) {
                 throw Error("Bad value places");
             }
-            if (game.purses.length as number  !== 1) {
+            if (game.purses.length as number  !== 2) {
                 throw Error("Bad value purses");
             }
         });
