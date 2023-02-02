@@ -88,28 +88,21 @@ export class Game {
         console.log(this.players[this.currentPlayer] + " is the current player");
         console.log("They have rolled a " + roll);
 
-        if (this.inPenaltyBox[this.currentPlayer] && roll % 2 === 0) {
+        if (this.inPenaltyBox[this.currentPlayer]) {
+            this.isGettingOutOfPenaltyBox = roll % 2 !== 0;
+        }
+
+        if (! this.isGettingOutOfPenaltyBox) {
             console.log(this.players[this.currentPlayer] + " is not getting out of the penalty box");
-            this.isGettingOutOfPenaltyBox = false;
             return;
         }
 
-        if (roll % 2 != 0) {
-                this.isGettingOutOfPenaltyBox = true;
+        this.movePlayer(this.currentPlayer, roll);
 
-                console.log(this.players[this.currentPlayer] + " is getting out of the penalty box");
-                this.movePlayer(this.currentPlayer, roll);
+        console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
+        console.log("The category is " + this.currentCategory());
+        this.askQuestion();
 
-                console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
-                console.log("The category is " + this.currentCategory());
-                this.askQuestion();
-        } else {
-            this.movePlayer(this.currentPlayer, roll);
-
-            console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
-            console.log("The category is " + this.currentCategory());
-            this.askQuestion();
-        }
     }
 
     private movePlayer(playerIndex: number, roll: number) {
